@@ -1,0 +1,6 @@
+<form method="POST" action="">
+    {% csrf_token %}
+    <input type="text" name="business_name" placeholder="Business Name" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit">Register</button>
+</form>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpowerMart</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/lightbox.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css?v=1.0">
+    <link rel="stylesheet" href="css/responsive-style.css">
+</head>
+<body>
+  <header id="full-nav">
+    <div class="header">
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo1.png" alt="Logo" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-stream navbar-toggler-icon"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'product' %}">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'startup' %}">College Startups</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'internship' %}">Internship Opportunities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLSemODBRhASNpFRlV64wCOltSxSLDR_WBGUQKw6XmJerUi9uJQ/viewform?usp=sf_link">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}" title="Login">
+                            <i class="fas fa-user-circle"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+  </header>
+  <section class="banner_section">
+    <div class="container">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="carousel-caption">
+                  <div class="banner-content">
+                    <h1>EmpowerMart:</h1>
+                    <h1>IGDTUW Marketplace</h1>
+                    <h3>Discover, Connect, and Support Student Businesses</h3>
+                    <p>Join us in celebrating student creativity and entrepreneurship by exploring a variety of unique products on our platform.</p>
+                    <a href="{% url 'product' %}" class="btn main-btn">ALL PRODUCTS</a>
+                  </div>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="carousel-caption">
+                  <div class="banner-content">
+                    <h1>EmpowerMart:</h1>
+                    <h1>IGDTUW Marketplace</h1>
+                    <h3>Discover, Connect, and Support Student Businesses</h3>
+                    <p>Join us in celebrating student creativity and entrepreneurship by exploring a variety of unique products on our platform.</p>
+                    <a href="{% url 'product' %}" class="btn main-btn">ALL PRODUCTS</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+  </section>
+  <section class="landing_about_section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 text-center pb-5">
+          <h2 class="section-title">About Us</h2>
+        </div>
+      </div>
+      <div class="rectangle">
+        <div class="d-flex align-items-center justify-content-between">
+            <p>Welcome to EmpowerMart! This platform is dedicated to supporting student entrepreneurs, alumni, and career seekers within the IGDTUW community. Our mission is to connect the college ecosystem by promoting student-run businesses, sharing inspiring stories of successful alumni, and offering curated job and internship listings. EmpowerMart is designed to foster growth, provide networking opportunities, and empower everyone to learn and succeed together. Whether you’re interested in shopping locally, gaining career insights, or discovering new opportunities, EmpowerMart is the place to begin.
+            </p>
+        </div>
+        <div class="read-more">
+          <a href=href="{% url 'about' %}" class="btn main-btn">READ MORE</a>
+        </div>
+      </div>
+    </div>
+     
+    </div>
+  </section>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
