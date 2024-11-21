@@ -1,0 +1,543 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box; /* For older Firefox browsers */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    outline: none;
+}
+
+:root {
+    --bg-white: #fff;
+    --primary-text: #240046;
+    --secondary-color: #e0aaff;
+    --primary-font: 'Barlow Condensed', sans-serif;
+    --secondary-font: 'Roboto', sans-serif;
+    --text-white: #ffffff; /* Added this variable for white text */
+}
+
+body, html {
+    color: var(--primary-text);
+    font-size: 10px;
+    font-weight: 400;
+    font-family: var(--primary-font);
+    scroll-behavior: smooth;
+    line-height: 1.5;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+}
+
+h1 {
+    font-size: 9rem;
+    line-height: 1.4;
+    font-weight: 600;
+    color: var(--primary-text);
+}
+
+h2 {
+    color: var(--primary-text);
+    font-size: 4.7rem;
+    font-weight: 600;
+    display: inline-block;
+    text-transform: capitalize;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+}
+
+h3 {
+    color:#723d46;
+    font-size: 3.1rem;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+h4 {
+    font-size: 2.5rem;
+    font-weight: 450;
+    line-height: 1;
+    color:#723d46;
+}
+
+h5 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--primary-text);
+}
+
+p {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    margin-top: 1rem;
+    color: var(--primary-text);
+    font-family: var(--secondary-font);
+}
+
+embed,
+iframe,
+img,
+object {
+    max-width: 100%;
+    height:auto;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a,
+a:active,
+a:focus,
+a:hover,
+button {
+    text-decoration: none;
+    outline: 0;
+}
+
+li a {
+    color: var(--text-white);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-white);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+}
+
+.main-btn {
+    position: relative;
+    color: var(--bg-white);
+    background: linear-gradient(to right, #3f046c, #9157b3);
+    z-index: 1;
+    overflow: hidden;
+    border: 0.2rem solid var(--bg-white);
+    border-radius: 3.5rem;
+    text-transform: uppercase;
+    padding: 1rem 3.5rem;
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-top: 1.5rem;
+    letter-spacing: 0.2rem;
+}
+
+.main-btn:hover {
+    background: var(--bg-white);
+    color: #3f046c;
+    border: 0.2rem solid #3f046c;
+}
+
+section {
+    padding: 5rem 0;
+}
+
+.section-title {
+    font-size: 4rem;
+    font-weight: 600;
+    color: var(--primary-text);
+    text-transform: capitalize;
+    margin-bottom: 2rem;
+}
+
+.section-subtitle {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--primary-text);
+    font-family: var(--secondary-font);
+    max-width: 40%;
+    margin: auto;
+    margin-bottom: 1.5rem;
+}
+
+.about .banner_section,
+.product .banner_section,
+.startup .banner_section,
+.internship .banner_section
+.dashboard .banner_section
+{
+    background: url('../images/banner.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-top: 17rem;
+    padding-bottom: 10rem;
+    min-height: auto;
+}
+
+.header {
+    position: relative;
+    width: 100%;
+    top: 2rem;
+    left: 0;
+    z-index: 2;
+}
+
+.header .navbar {
+    width: 95%; /* Full width */
+    height:100%;
+    margin: 0 auto; /* Center-align content if desired */
+    padding: 2rem 5rem; /* Add top and bottom padding as needed */
+    background: url('../images/purple-header.png') no-repeat center center;
+    background-size: cover; /* Make the background cover the whole width and height */
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.header .navbar-brand{
+    width:30rem;
+    margin-top:-0.1rem;
+}
+
+.header .navbar-nav .nav-link{
+    color:var( --secondary-color);
+    text-transform:uppercase;
+    font-size:1.9rem;
+    font-weight:600;
+    padding:0.5rem 2rem;
+    margin:0 0.2rem;
+    font-family:var(--primary-font);
+}
+.header .navbar-nav .nav-link:hover,
+.header .navbar-nav .nav-link.active{
+    color:var(--text-white);
+}
+.header .navbar-brand {
+    max-width: 32rem; /* Adjust based on your layout */
+    display: inline-block;
+    margin-right: 1rem; /* Optional: adds space between logo and nav items */
+}
+.header .navbar-brand img {
+    max-width: 100%;  /* Ensures the image resizes within the container */
+    height: auto;     /* Maintains aspect ratio */
+}
+.header .navbar-toggler{
+    color:var( --secondary-color) !important; 
+    font-size:2rem;
+    height:2.7rem;
+    padding:0;
+}
+.header .navbar-toggler{
+    outline:none;
+    box-shadow:none;
+}
+.header-scrolled{
+    position:fixed;
+    top:-0.4rem;
+    left:0;
+    right:0;
+    width:100%;
+    max-width:1320px;
+    margin:auto;
+    z-index:999;
+    transition:0.3s all ease-in-out;
+}
+
+.banner_section{
+    background:url('../images/banner.png');
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size: cover;
+    min-height:75vh;
+}
+.banner_section .carousel-item{
+    padding:3rem 0;
+    height:90vh;
+}
+.banner_section .carousel-caption h3{
+    
+    display:inline;
+}
+.banner_section .carousel-caption{
+    top:20%;
+    bottom:0;
+    left:0%;
+    right:0;
+    text-align:left;
+    width:100%;
+}
+
+.landing_about_section .rectangle {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border: 0.5rem solid var(--primary-text);
+    border-radius: 5rem;
+    padding: 2rem 1rem;
+    transition: all 0.3s;
+    width: 100%;
+    height:auto;
+    max-width: 100%;
+    justify-content: space-between; /* Optional: space out content */
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items:center; /* Align items to the left */
+}
+
+.landing_about_section .rectangle p {
+    color: #723d46;
+    font-size: 2rem;
+    display: block; 
+}
+.about_section {
+    padding: 2rem 0;
+}
+
+
+
+.about_section h3 {
+    font-size: 3rem;
+    
+}
+.about_section .paragraph-container {
+    margin-bottom: 2.5rem; /* Increased space between paragraphs */
+}
+
+.about_section .rectangle {
+    border: 0.5rem solid var(--primary-text);
+    border-radius: 2rem;
+    padding: 2rem 1rem;
+    color: #723d46;
+    max-width: 100%;
+    width:100%;
+    height:auto;
+}
+
+.about_section .paragraph-container {
+    margin-bottom: 2.5rem; /* Adds space between paragraphs */
+}
+
+.about_section .paragraph-container p {
+    color: #723d46;
+    font-size: 2rem;
+    line-height:2;
+    text-align: justify;
+    margin: 0;
+    padding: 0;
+}
+
+/* login-style.css */
+.login * {
+    margin: 0;
+    padding: 0;
+}
+.login {
+    height: 100vh; /* Ensure .login takes up the full viewport height */
+    width: 100vw; /* Ensure it spans the full viewport width */
+    overflow: hidden; /* Prevent scrollbars */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #3f046c, #9157b3);
+}
+.login body {
+   
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.login .container {
+    width: 100%;
+    height: 100%; /* Let the container fill the .login wrapper */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login .form-box {
+    width: 45rem;
+    height: 53rem;
+    background-color: white;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login .form-header {
+    font-size: 3.5rem;
+    color: #3f046c;
+    margin-bottom: 20px;
+}
+
+.login .user-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.login .user-form input {
+    width: 90%;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 2.1rem;
+    border: 2px solid #5a189a;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.login .user-form input:focus {
+    border-color: #9d4edd;
+}
+
+.login .login-button {
+    position: relative;
+    color: var(--bg-white);
+    background: linear-gradient(to right, #3f046c, #9157b3);
+    z-index: 1;
+    overflow: hidden;
+    border: 0.2rem solid var(--bg-white);
+    border-radius: 3.5rem;
+    text-transform: uppercase;
+    padding: 1rem 3.5rem;
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-top: 1.5rem;
+    letter-spacing: 0.2rem;
+}
+
+.login .login-button:hover {
+    background: var(--bg-white);
+    color: #3f046c;
+    border: 0.2rem solid #3f046c;
+}
+.container_seller {
+    display: flex;
+    justify-content:flex-start; /* Centers content horizontally */
+    align-items:center;     /* Centers content vertically */
+    height: 100%;            /* Make the container full height of the section */
+    text-align: left;        /* Align text to the left */
+}
+
+.banner-content_seller {
+    margin-left:1.5%;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;  /* Stack the h2 elements vertically */
+    align-items:flex-start; /* Align items to the left */
+    justify-content: center;
+}
+.sellerProducts{
+    background-color: #fce8e0;
+    height: 100vh; /* Ensure .login takes up the full viewport height */
+    width: 100vw; /* Ensure it spans the full viewport width */
+    overflow: hidden; /* Prevent scrollbars */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.sellerProducts form {
+    width: 45rem;
+    height: 53rem;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+}
+.form-group {
+    display: flex;
+    align-items:flex-start;
+    justify-content: space-between;
+    gap: 10px; /* Space between label and input */
+}
+.form-group label {
+    
+    flex: 0 0 30%; /* Set the label to take 30% of the width */
+    font-weight:550;
+    font-size:1.7rem;
+    text-align:start; /* Align label text to the right */
+    color:#63039b;
+    white-space: nowrap;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select,
+.form-group button {
+    flex: 1; /* Make input fields take the remaining space */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    box-sizing: border-box;
+}
+.sellerProducts h2 {
+    text-align: center;
+    margin-bottom: 20px; /* Add spacing below the heading */
+    font-size: 2.8rem; /* Adjust font size as needed */
+    
+}
+.sellerProducts button {
+    display: block;
+    margin: 20px auto; /* Center the button */
+    padding: 10px 13px;
+    background-color:#63039b;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+.sellerProducts button:hover {
+    background: var(--bg-white);
+    color: #63039b;
+    border: 0.2rem solid #63039b;
+}
+.product_page{
+    background-color:#fce8e0;
+
+}
+/* Product page-specific card styling */
+.product_page .product-card {
+    margin-top: 3rem;
+    margin-left:2.5rem;
+    background-color: white; /* Cards are white */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    width: 250px;
+    padding: 20px;
+}
+
+/* Additional styles for product grid if needed */
+.product_page .product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    padding: 20px;
+   
+}
+
