@@ -439,5 +439,105 @@ section {
     align-items:flex-start; /* Align items to the left */
     justify-content: center;
 }
+.sellerProducts{
+    background-color: #fce8e0;
+    height: 100vh; /* Ensure .login takes up the full viewport height */
+    width: 100vw; /* Ensure it spans the full viewport width */
+    overflow: hidden; /* Prevent scrollbars */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.sellerProducts form {
+    width: 45rem;
+    height: 53rem;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 
+}
+.form-group {
+    display: flex;
+    align-items:flex-start;
+    justify-content: space-between;
+    gap: 10px; /* Space between label and input */
+}
+.form-group label {
+    
+    flex: 0 0 30%; /* Set the label to take 30% of the width */
+    font-weight:550;
+    font-size:1.7rem;
+    text-align:start; /* Align label text to the right */
+    color:#63039b;
+    white-space: nowrap;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select,
+.form-group button {
+    flex: 1; /* Make input fields take the remaining space */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    box-sizing: border-box;
+}
+.sellerProducts h2 {
+    text-align: center;
+    margin-bottom: 20px; /* Add spacing below the heading */
+    font-size: 2.8rem; /* Adjust font size as needed */
+    
+}
+.sellerProducts button {
+    display: block;
+    margin: 20px auto; /* Center the button */
+    padding: 10px 13px;
+    background-color:#63039b;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+.sellerProducts button:hover {
+    background: var(--bg-white);
+    color: #63039b;
+    border: 0.2rem solid #63039b;
+}
+.product_page{
+    background-color:#fce8e0;
+
+}
+/* Product page-specific card styling */
+.product_page .product-card {
+    margin-top: 3rem;
+    margin-left:2.5rem;
+    background-color: white; /* Cards are white */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    width: 250px;
+    padding: 20px;
+}
+
+/* Additional styles for product grid if needed */
+.product_page .product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    padding: 20px;
+   
+}
 
