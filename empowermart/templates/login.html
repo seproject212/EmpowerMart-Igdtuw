@@ -17,20 +17,22 @@
         <div class="form-box">
             <h2 class="form-header">Seller Login</h2>
             <!-- The Login Form -->
-            <form method="POST" action="">
+            <form method="POST" action="{% url 'login' %}"> <!-- Ensure the form posts to the correct login view -->
                 {% csrf_token %}
-                <input type="text" name="business_name" placeholder="Business Name" required>
+                {% comment %} <input type="text" name="business_name" placeholder="Business Name" required>
+                <input type="password" name="password" placeholder="Password" required> {% endcomment %}
+                <input type="text" name="username" placeholder="Business Name" required>
                 <input type="password" name="password" placeholder="Password" required>
-                <a href="{% url 'dashboard' %}" id="loginButton" class="login-button">Login</a>
-                {% comment %} <button type="submit">Login</button> {% endcomment %}
+                <button type="submit" class="login-button">Login</button> <!-- Submit the form properly -->
             </form>
-            
-            <!-- Message Display -->
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
             <div>
                 {% for message in messages %}
                     <p>{{ message }}</p>
                 {% endfor %}
-            </div>
+            </div>            
         </div>
     </div>
 </body>

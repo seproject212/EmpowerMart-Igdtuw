@@ -1,35 +1,33 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seller Dashboard</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="css/lightbox.css">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-    <link rel="stylesheet" href="css/style.css?v=1.0">
-    <link rel="stylesheet" href="css/responsive-style.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive-style.css' %}">
 </head>
 <body>
     <header id="full-nav">
         <div class="header">
             <nav class="navbar navbar-expand-lg">
                 <a class="navbar-brand" href="#">
-                    <img src="images/logo1.png" alt="Logo" class="logo">
+                    <img src="{% static 'images/logo1.png' %}" alt="Logo" class="logo">
                 </a>
-        
             </nav>
         </div>
     </header>
     <section class="banner_section">
         <div class="container_seller">
             <div class="banner-content_seller">
-                <h1>Welcome</h1>
-                <h1>{{ user.business_name }}!</h1>
+                <h1>Welcome, {{ user.business_name }}!</h1>
             </div>
-
         </div>
     </section>
     <section class="listing_section">
@@ -37,35 +35,31 @@
             <div class="row justify-content-center">
                 <div class="col-12 text-center pb-5">
                     <h2 class="section-title">Your Listings</h2>
-                    <h4>You have {{ products.count }} products listed</h4>
+                    <h4>You have {{ products|length }} products listed</h4>
                     <a href="{% url 'add_product' %}" class="btn main-btn">+ ADD NEW PRODUCT</a>
                 </div>
             </div>
-           
+            <div class="row">
+                {% for product in products %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <img src="{{ product.Product_Image.url }}" class="card-img-top" alt="Product Image">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.Product_name }}</h5>
+                                <p class="card-text">Price: ₹{{ product.price_per_unit }}</p>
+                                <p class="card-text">Business: {{ product.business_name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="text-center">No products listed yet. Click "Add New Product" to get started.</p>
+                {% endfor %}
+            </div>
         </div>
     </section>
-    <div class="row">
-        {% for product in products %}
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{ Product.Product_Image.url }}" class="card-img-top" alt="Product Image">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ Product.Product_name }}</h5>
-                        <p class="card-text">Price: ₹{{ Product.price_per_unit }}</p>
-                        <p class="card-text">Business: {{ Product.business_name }}</p>
-                    </div>
-                </div>
-            </div>
-        {% empty %}
-            <p class="text-center">No products listed yet. Click "Add New Product" to get started.</p>
-        {% endfor %}
-    </div>
-</div>
-
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-
 </body>
 </html>
