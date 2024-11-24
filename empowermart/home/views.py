@@ -3,6 +3,9 @@ from home.models import user
 from django.contrib import messages
 from django.contrib.auth.hashers import make_password, check_password
 from .models import Product
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
@@ -19,29 +22,27 @@ def startup(request):
 def products(request):
     return render(request, 'product.html')
 
-def login(request):
-    if request.method == "POST":
-        business_name = request.POST.get('business_name')
-        password = request.POST.get('password')
+from django.contrib.auth import authenticate, login
+from django.shortcuts import redirect
+from django.contrib.auth.forms import AuthenticationForm
 
-        if business_name and password:
-            try:
-                # Retrieve the user based on the business_name
-                user_obj = user.objects.get(business_name=business_name)
-                
-                # Use the custom check_password method to verify the password
-                if user_obj.check_password(password):
-                    # Successful login
-                    return HttpResponse(f"Welcome, {user_obj.business_name}!")
-                else:
-                    return HttpResponse("Invalid username or password.", status=401)
-            
-            except user.DoesNotExist:
-                return HttpResponse("User does not exist.", status=404)
+from django.contrib import messages
+
+def login_view(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('dashboard_view')
+
+            # return redirect('dashboard')
         else:
-            return HttpResponse("Missing business name or password.", status=400)
-    
-    return render(request, "login.html")
+            messages.error(request, "Invalid credentials. Please try again.")
+    else:
+        form = AuthenticationForm()
+
+    return render(request, 'login.html', {'form': form})
 
 from django.contrib.auth.hashers import make_password
 
@@ -58,12 +59,13 @@ def register(request):
             return HttpResponse("Missing business name or password.", status=400)
     return render(request, "register.html")
 
-def dashboard(request):
-    products = Product.objects.filter(business_name=request.user.business_name)
-    return render(request, 'dashboard.html', {'products': products})
-
+@login_required
 def dashboard_view(request):
-    return render(request, "dashboard.html", {"user": request.user})
+    # print(f"User's business name: {request.user.business_name}")
+    products = Product.objects.filter(business_name=request.user)
+    return render(request, 'dashboard.html', {'products': products})
+# def dashboard_view(request):
+#     return render(request, "dashboard.html", {"user": request.user})
 
 def product_list(request):
     products = Product.objects.all()
@@ -79,13 +81,28 @@ from decimal import Decimal, InvalidOperation
 from django.shortcuts import render, redirect
 from home.models import Product
 
+import logging
+from decimal import Decimal, InvalidOperation
+from django.shortcuts import render, redirect
+from .models import Product
+
+logger = logging.getLogger(__name__)
+
+from decimal import Decimal, InvalidOperation
+from django.shortcuts import render, redirect
+from .models import Product
+
+from decimal import Decimal, InvalidOperation
+from django.shortcuts import render, redirect
+from .models import Product
+
 def add_product(request):
     if request.method == 'POST':
         # Retrieve form data
         product_name = request.POST.get('Product_name')
         price_per_unit = request.POST.get('Price_per_unit')
         product_description = request.POST.get('Product_Description')
-        product_image = request.FILES.get('Product_Image')  # Use .get to avoid errors if the file isn't uploaded
+        product_image = request.FILES.get('Product_Image')
 
         # Ensure required fields are provided
         if not product_name or not product_description:
@@ -103,21 +120,28 @@ def add_product(request):
         if not request.user.is_authenticated:
             return redirect('login')  # Redirect to login page if user is not logged in
 
-        # Get the currently logged-in user
-        current_user = request.user
-
         # Create and save the new product
-        new_product = Product(
-            Product_name=product_name,
-            Price_per_unit=price,
-            Product_Description=product_description,
-            Product_Image=product_image,
-            business_name=current_user  # This should now work correctly
-        )
-        new_product.save()
+        try:
+            new_product = Product(
+                Product_name=product_name,
+                Price_per_unit=price,
+                Product_Description=product_description,
+                Product_Image=product_image,
+                business_name=request.user  # Assign the logged-in user
+            )
+            new_product.save()
+        except Exception as e:
+            return render(request, 'add_product.html', {'error': f"Error saving product: {str(e)}"})
 
         # Redirect to the product list page or a success page
         return redirect('product_list')
 
     # If GET request, render the form to add a product
     return render(request, 'add_product.html')
+
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')

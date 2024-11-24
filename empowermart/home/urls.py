@@ -8,8 +8,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')), 
     path('', views.home, name='home'),
-    # path('login/', views.login, name="login"),
-    # path('dashboard/', views.dashboard, name="dashboard"),
+    path('login/', views.login_view, name="login"),
+    path('dashboard/', views.dashboard_view, name="dashboard"),
+    path('logout/', views.logout_view, name='logout'),
 ] 
 if settings.DEBUG:  # Only in development mode
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
