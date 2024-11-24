@@ -20,6 +20,7 @@
     --primary-font: 'Barlow Condensed', sans-serif;
     --secondary-font: 'Roboto', sans-serif;
     --text-white: #ffffff; /* Added this variable for white text */
+    
 }
 
 body, html {
@@ -540,4 +541,5 @@ section {
     padding: 20px;
    
 }
+
 
