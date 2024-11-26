@@ -67,8 +67,10 @@ def dashboard_view(request):
 # def dashboard_view(request):
 #     return render(request, "dashboard.html", {"user": request.user})
 
+@login_required
 def product_list(request):
-    products = Product.objects.all()
+    # Filter products based on the logged-in user
+    products = Product.objects.filter(business_name=request.user)
     return render(request, 'product.html', {'products': products})
 
 
@@ -96,6 +98,7 @@ from decimal import Decimal, InvalidOperation
 from django.shortcuts import render, redirect
 from .models import Product
 
+@login_required
 def add_product(request):
     if request.method == 'POST':
         # Retrieve form data
@@ -104,21 +107,21 @@ def add_product(request):
         product_description = request.POST.get('Product_Description')
         product_image = request.FILES.get('Product_Image')
 
-        # Ensure required fields are provided
+        # Validate required fields
         if not product_name or not product_description:
             return render(request, 'add_product.html', {
-                'error': 'Product name and description are required.'
+                'error': 'Product name and description are required.',
+                'form_data': request.POST  # Preserve form data for re-rendering
             })
 
         # Validate price_per_unit
         try:
             price = Decimal(price_per_unit) if price_per_unit else None
         except InvalidOperation:
-            return render(request, 'add_product.html', {'error': 'Invalid price value.'})
-
-        # Ensure user is authenticated
-        if not request.user.is_authenticated:
-            return redirect('login')  # Redirect to login page if user is not logged in
+            return render(request, 'add_product.html', {
+                'error': 'Invalid price value.',
+                'form_data': request.POST
+            })
 
         # Create and save the new product
         try:
@@ -131,12 +134,15 @@ def add_product(request):
             )
             new_product.save()
         except Exception as e:
-            return render(request, 'add_product.html', {'error': f"Error saving product: {str(e)}"})
+            return render(request, 'add_product.html', {
+                'error': f"Error saving product: {str(e)}",
+                'form_data': request.POST
+            })
 
-        # Redirect to the product list page or a success page
+        # Redirect to the product list page on success
         return redirect('product_list')
 
-    # If GET request, render the form to add a product
+    # For GET requests, render the form
     return render(request, 'add_product.html')
 
 from django.contrib.auth import logout

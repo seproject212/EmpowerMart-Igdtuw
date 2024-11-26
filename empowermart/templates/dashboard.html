@@ -47,8 +47,10 @@
                             <img src="{{ product.Product_Image.url }}" class="card-img-top" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">{{ product.Product_name }}</h5>
-                                <p class="card-text">₹{{ product.Price_per_unit }}</p>
+                                <p class="card-text">Price: ₹{{ product.Price_per_unit }}</p>
+                                <p class="card-text">Business: {{ product.business_name }}</p>
                                 <p class="card-text">{{ product.Product_Description }}</p>
+
                             </div>
                         </div>
                     </div>
