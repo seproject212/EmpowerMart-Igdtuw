@@ -67,7 +67,7 @@ def dashboard_view(request):
 # def dashboard_view(request):
 #     return render(request, "dashboard.html", {"user": request.user})
 
-@login_required
+# @login_required
 def product_list(request):
     # Filter products based on the logged-in user
     # products = Product.objects.filter(business_name=request.user)
@@ -77,7 +77,7 @@ def product_list(request):
 
 # View to display the details of a single product
 
-@login_required
+# @login_required
 def product_detail(request, id):
     product = get_object_or_404(Product, Product_Id=id)  # Fetch the product by its ID
     return render(request, 'product_detail.html', {'product': product})
