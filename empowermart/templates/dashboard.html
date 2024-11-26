@@ -13,6 +13,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive-style.css' %}">
+    <style>
+        .col-md-2 {
+            flex: 0 0 20%;  /* 5 cards in the row */
+            max-width: 20%; /* Prevent exceeding 20% of the row width */
+        }
+        .listing_section .card{
+            height:400px;
+            margin-top: 3rem;
+            margin-left:1rem;
+            background-color: white; 
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            width: 250px;
+            padding: 10px;
+            flex: 1 1 calc(25% - 1rem); /* Ensures 4 cards per row, accounting for gap */
+        
+        }
+        .listing_section .card img {
+            width: 100%; /* Ensure the image spans the full width of the card */
+            height: 250px; /* Set a fixed height */
+            object-fit: contain; /* Ensure the image scales without distortion */
+            border-radius: 8px; /* Optional: match the card's border radius */
+        }
+        .listing_section .card-title{
+            font-size:2.5rem;
+        }
+        
+        
+        
+    </style>
 </head>
 <body>
     <header id="full-nav">
@@ -42,14 +75,14 @@
             </div>
             <div class="row">
                 {% for product in products %}
-                    <div class="col-md-4 mb-4">
+                <div class="col-6 col-md-2 mb-4">
                         <div class="card">
                             <img src="{{ product.Product_Image.url }}" class="card-img-top" alt="Product Image">
                             <div class="card-body">
                                 <h5 class="card-title">{{ product.Product_name }}</h5>
                                 <p class="card-text">Price: ₹{{ product.Price_per_unit }}</p>
                                 <p class="card-text">Business: {{ product.business_name }}</p>
-                                <p class="card-text">{{ product.Product_Description }}</p>
+                                
 
                             </div>
                         </div>
