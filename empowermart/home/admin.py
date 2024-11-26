@@ -22,12 +22,12 @@ class UserAdminForm(forms.ModelForm):
 # Custom UserAdmin class
 class UserAdmin(admin.ModelAdmin):
     form = UserAdminForm  # Use the custom form
-    list_display = ('business_name', 'is_active', 'is_staff', 'is_superuser')  # Display these fields
+    list_display = ('business_name','Instagram_link', 'Phone_number', 'is_active', 'is_staff', 'is_superuser')  # Display these fields
     search_fields = ('business_name',)  # Allow searching by business_name
 
     # Customize admin form layout
     fieldsets = (
-        (None, {'fields': ('business_name', 'password')}),
+        (None, {'fields': ('business_name', 'password', 'Instagram_link', 'Phone_number')}),
         ('Permissions', {
             'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
         }),

@@ -70,15 +70,17 @@ def dashboard_view(request):
 @login_required
 def product_list(request):
     # Filter products based on the logged-in user
-    products = Product.objects.filter(business_name=request.user)
+    # products = Product.objects.filter(business_name=request.user)
+    products = Product.objects.all()
     return render(request, 'product.html', {'products': products})
 
 
 # View to display the details of a single product
-def product_detail(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    return render(request, 'product_detail.html', {'product': product})
 
+@login_required
+def product_detail(request, id):
+    product = get_object_or_404(Product, Product_Id=id)  # Fetch the product by its ID
+    return render(request, 'product_detail.html', {'product': product})
 from decimal import Decimal, InvalidOperation
 from django.shortcuts import render, redirect
 from home.models import Product
@@ -139,8 +141,8 @@ def add_product(request):
                 'form_data': request.POST
             })
 
-        # Redirect to the product list page on success
-        return redirect('product_list')
+        # Redirect to the dashboard on success
+        return redirect('/dashboard')  
 
     # For GET requests, render the form
     return render(request, 'add_product.html')

@@ -26,25 +26,25 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="home.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About Us</a>
+                        <a class="nav-link" href="{% url 'about' %}">About Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link  active" href="#">Products</a> 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="startup.html">College Startups</a> 
+                        <a class="nav-link" href="{% url 'startup' %}">College Startups</a> 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="internship.html">Internship Opportunities</a>
+                        <a class="nav-link" href="{% url 'internship' %}">Internship Opportunities</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://docs.google.com/forms/d/e/1FAIpQLSemODBRhASNpFRlV64wCOltSxSLDR_WBGUQKw6XmJerUi9uJQ/viewform?usp=sf_link">Contact Us</a> 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html" title="Login">
+                        <a class="nav-link" href="{% url 'login' %}" title="Login">
                             <i class="fas fa-user-circle"></i>
                         </a>
                     </li>
@@ -54,86 +54,30 @@
     </div>
   </header>
   <body class="product_page">
-    div class="product-grid">
-    {% for product in products %}
-    <div class="product-card" onclick="location.href='{% url 'product_detail' product.product_id %}'">
-        <img src="{{ product.product_image.url }}" alt="{{ product.product_name }}" class="product-image">
-        <div class="product-info">
-            <h4>{{ product.product_name }}</h4>
-            <p>₹{{ product.price_per_unit }}</p>
-            <p>By: {{ product.business.business_name }}</p>
-        </div>
+    <div class="product-grid">
+        {% if products %}
+            {% for product in products %}
+                <div class="product-card" onclick="window.location.href='{% url 'product_detail' product.Product_Id %}'">
+                    {% comment %} <a href="{% url 'product_list' %}" onclick="event.stopPropagation();">
+                        <img src="{{ product.Product_Image.url }}" alt="{{ product.Product_name }}" class="product-image">
+                    </a>                     {% endcomment %}
+                    <img src="{{ product.Product_Image.url }}" alt="{{ product.Product_name }}" class="product-image">
+                    <div class="product-info">
+                        <h4>{{ product.Product_name }}</h4>
+                        <p>₹{{ product.Price_per_unit }}</p>
+                        {% comment %} <p>{{ product.Product_Description }}</p> {% endcomment %}
+                        <a href="{% url 'product_detail' id=product.Product_Id %}">View Details</a>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No products available at the moment.</p>
+            {% endfor %}
+        {% else %}
+            <p>No products available at the moment.</p>
+        {% endif %}
     </div>
-    {% endfor %}
-    </div>
-    <!--<div class="product-grid">
-        <div class="product-card">
-            <img src="images/sample-product.jpg" alt="Product 1" class="product-image">
-            <div class="product-info">
-                <h4>Product 1</h4>
-                <p>₹500</p>
-                <p>By: Business Name</p>
-            </div>
-        </div>
-        <div class="product-card">
-            <img src="images/sample-product.jpg" alt="Product 2" class="product-image">
-            <div class="product-info">
-                <h4>Product 2</h4>
-                <p>₹750</p>
-                <p>By: Another Business</p>
-            </div>
-        </div>
-        <div class="product-card">
-            <img src="images/sample-product.jpg" alt="Product 1" class="product-image">
-            <div class="product-info">
-                <h4>Product 1</h4>
-                <p>₹500</p>
-                <p>By: Business Name</p>
-            </div>
-        </div>
-        <div class="product-card">
-            <img src="images/sample-product.jpg" alt="Product 2" class="product-image">
-            <div class="product-info">
-                <h4>Product 2</h4>
-                <p>₹750</p>
-                <p>By: Another Business</p>
-            </div>
-        </div>
-        <div class="product-card">
-            <img src="images/sample-product.jpg" alt="Product 1" class="product-image">
-            <div class="product-info">
-                <h4>Product 1</h4>
-                <p>₹500</p>
-                <p>By: Business Name</p>
-            </div>
-        </div>
-        <div class="product-card">
-            <img src="images/sample-product.jpg" alt="Product 2" class="product-image">
-            <div class="product-info">
-                <h4>Product 2</h4>
-                <p>₹750</p>
-                <p>By: Another Business</p>
-            </div>
-        </div>
-        <div class="product-card">
-            <img src="images/sample-product.jpg" alt="Product 1" class="product-image">
-            <div class="product-info">
-                <h4>Product 1</h4>
-                <p>₹500</p>
-                <p>By: Business Name</p>
-            </div>
-        </div>
-        <div class="product-card">
-            <img src="images/sample-product.jpg" alt="Product 2" class="product-image">
-            <div class="product-info">
-                <h4>Product 2</h4>
-                <p>₹750</p>
-                <p>By: Another Business</p>
-            </div>
-        </div>
-    </div>-->
-  
-  </body>
+</body>
+
     
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

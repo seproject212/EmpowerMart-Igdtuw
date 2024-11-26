@@ -30,7 +30,8 @@ class user(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)  # This grants access to the admin interface
     is_superuser = models.BooleanField(default=False)  # For superuser access
-
+    Instagram_link = models.URLField(max_length=500, null=True, blank=True)  # Optional Instagram link
+    Phone_number = models.CharField(max_length=15, null=True, blank=True)
     objects = UserManager()
 
     USERNAME_FIELD = 'business_name'  # Use business_name to log in
@@ -63,6 +64,6 @@ class Product(models.Model):
     Product_Description = models.TextField()
     Product_Image = models.ImageField(upload_to='products/')
     business_name = models.ForeignKey('user', on_delete=models.CASCADE)  # Foreign key to the user model
-
+    
     def __str__(self):
         return self.Product_name

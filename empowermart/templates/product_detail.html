@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.Product_name }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <main>
+    <div class="product-detail">
+      <img src="{{ product.Product_Image.url }}" alt="{{ product.Product_name }}" class="product-detail-image">
+      <h1>{{ product.Product_name }}</h1>
+      <p>Price: ₹{{ product.Price_per_unit }}</p>
+      <p>Description: {{ product.Product_Description }}</p>
+      <p>Business Name: {{ product.business_name }}</p>
+    </div>
+  </main>
+</body>
+</html>
