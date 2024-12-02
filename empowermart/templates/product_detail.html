@@ -122,15 +122,28 @@ a:hover {
         <p>{{ product.Product_Description }}</p>
 
         <!-- Instagram and Contact Links -->
-        <a href="{{ user.Instagram_link }}" target="_blank" class="instagram-link">
+        {% comment %} <a href="{{ user.Instagram_link }}" target="_blank" class="instagram-link">
           <i class="fa-brands fa-instagram"></i>
         </a>
         <a href="tel:{{ user.contact_number }}" class="phone-link">
           <i class="fa fa-phone-alt"></i> {{ user.Phone_number }}
+        </a> {% endcomment %}
+        <!-- Instagram and Contact Links -->
+        {% if user.Instagram_link %}
+        <a href="{{ user.Instagram_link }}" target="_blank" class="instagram-link">
+          <i class="fa-brands fa-instagram"></i>
         </a>
-      </div>
-    
-      
+        {% else %}
+        <p>No Instagram link available</p>
+        {% endif %}
+        {% if user.Phone_number %}
+        <a href="tel:{{ user.Phone_number }}" class="phone-link">
+          <i class="fa fa-phone-alt"></i> {{ user.Phone_number }}
+        </a>
+        {% else %}
+        <p>No phone number available</p>
+        {% endif %}
+      </div> 
     </div>
   </main>
 </body>
