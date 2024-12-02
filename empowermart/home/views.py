@@ -80,7 +80,8 @@ def product_list(request):
 # @login_required
 def product_detail(request, id):
     product = get_object_or_404(Product, Product_Id=id)  # Fetch the product by its ID
-    return render(request, 'product_detail.html', {'product': product})
+    user = product.business_name
+    return render(request, 'product_detail.html', {'product': product, 'user': user})
 from decimal import Decimal, InvalidOperation
 from django.shortcuts import render, redirect
 from home.models import Product
