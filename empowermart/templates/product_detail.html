@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.Product_name }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+      /* Set the background color of the body */
+body.product_detail1 {
+  background-color: #fce8e0;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Style the product-detail card */
+.product-detail {
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 93.1%; /* Adjust width as per requirement */
+ justify-content:center;
+ margin:5rem;
+  padding: 2rem;
+  align-items: center;
+  height:65rem;
+  
+}
+
+/* Style the image */
+.product-detail-image {
+  width: 95%;  /* Stretch to the full width of the card */
+    height: 95%; /* Stretch to the full height of the card */
+    object-fit: cover;  /* Keeps the aspect ratio while covering the space */
+    border-radius: 8px; /* Rounded corners for image */
+    margin-right: 20px; /* Space between image and content */
+    margin-left: 20px;
+    
+}
+
+/* Style the product info section */
+.product-info {
+  max-width: 600px;
+}
+
+
+/* Style the links and icons */
+a {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+a i {
+  margin-right: 10px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.product-info h1, .product-info h3 {
+  margin: 10px 0;
+}
+/* Instagram Icon Styling */
+.product-detail-content a.instagram-link {
+    font-size: 30px; /* Make the Instagram logo larger */
+    color: #E4405F; /* Instagram pink color */
+    margin-top: 10px; /* Space between the links and content */
+    display: inline-block;
+    margin-right: 15px; /* Space between Instagram and phone icons */
+    transition: color 0.3s ease;  /* Smooth transition for hover effect */
+}
+
+.product-detail-content a.instagram-link:hover {
+    color: #833ab4; /* Instagram gradient purple when hovered */
+}
+.product-detail-content p{
+  font-size:2rem;
+}
+
+/* Phone Icon Styling */
+.product-detail-content a.phone-link {
+    font-size: 25px; /* Make the phone icon larger */
+    color: #0056b3; /* Blue color for the phone icon */
+    display: inline-block;
+    transition: color 0.3s ease;  /* Smooth transition for hover effect */
+}
+
+.product-detail-content a.phone-link:hover {
+    color:#023e8a; /* Dark blue color when hovered */
+}
+
+/* Make sure the icons are aligned */
+.product-detail-content a {
+    
+    display: inline-flex; /* Align both icons inline horizontally */
+    align-items: center; /* Vertically center the icons */
+    margin-top: 10px; /* Optional, to add space above the icons */
+}
+
+
+    </style>
+</head>
+<body class="product_detail1">
+  <main>
+    <div class="product-detail">
+      <img src="{{ product.Product_Image.url }}" alt="{{ product.Product_name }}" class="product-detail-image">
+      <div class="product-detail-content">
+        <h2>{{ product.Product_name }}</h2>
+        <h3>₹{{ product.Price_per_unit }}</h3>
+        <h3>Business Name: {{ product.business_name }}</h3>
+        <p>{{ product.Product_Description }}</p>
+
+        <!-- Instagram and Contact Links -->
+        {% comment %} <a href="{{ user.Instagram_link }}" target="_blank" class="instagram-link">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="tel:{{ user.Phone_number }}" class="phone-link">
+          <i class="fa fa-phone-alt"></i> {{ user.Phone_number }}
+
+        </a> {% endcomment %}
+        <!-- Instagram and Contact Links -->
+        {% if user.Instagram_link %}
+        <a href="{{ user.Instagram_link }}" target="_blank" class="instagram-link">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        {% else %}
+        <p>No Instagram link available</p>
+        {% endif %}
+        {% if user.Phone_number %}
+        <a href="tel:{{ user.Phone_number }}" class="phone-link">
+          <i class="fa fa-phone-alt"></i> {{ user.Phone_number }}
+        </a>
+        {% else %}
+        <p>No phone number available</p>
+        {% endif %}
+      </div> 
+
+    </div>
+  </main>
+</body>
+</html>

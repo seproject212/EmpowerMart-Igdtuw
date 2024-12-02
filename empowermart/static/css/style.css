@@ -20,6 +20,7 @@
     --primary-font: 'Barlow Condensed', sans-serif;
     --secondary-font: 'Roboto', sans-serif;
     --text-white: #ffffff; /* Added this variable for white text */
+    
 }
 
 body, html {
@@ -344,7 +345,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to right, #3f046c, #9157b3);
+    background: linear-gradient(to right,#000000, #3f046c, #9157b3,rgb(215, 149, 254));
 }
 .login body {
    
@@ -367,17 +368,22 @@ section {
     background-color: white;
     padding: 20px;
     border-radius: 18px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    
 }
 
 .login .form-header {
-    font-size: 3.5rem;
+    font-size: 3.9rem;
     color: #3f046c;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
+    margin-top:45px;
+   
 }
 
 .login .user-form {
@@ -385,25 +391,23 @@ section {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    gap: 15px;
 }
 
-.login .user-form input {
-    width: 90%;
-    margin: 10px 0;
-    padding: 10px;
-    font-size: 2.1rem;
+.login input {
+   width:90%;
+    margin: 10px;
+    padding: 7px 15px;
+    font-size: 2.8rem;
     border: 2px solid #5a189a;
     border-radius: 5px;
     outline: none;
     transition: border-color 0.3s;
 }
 
-.login .user-form input:focus {
-    border-color: #9d4edd;
-}
 
 .login .login-button {
-    position: relative;
+    position:relative;
     color: var(--bg-white);
     background: linear-gradient(to right, #3f046c, #9157b3);
     z-index: 1;
@@ -413,9 +417,12 @@ section {
     text-transform: uppercase;
     padding: 1rem 3.5rem;
     font-weight: 600;
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     margin-top: 1.5rem;
     letter-spacing: 0.2rem;
+    text-align: center;
+    display: block;
+    margin: 20px auto; /* Center the button */
 }
 
 .login .login-button:hover {
@@ -440,71 +447,77 @@ section {
     justify-content: center;
 }
 .sellerProducts{
-    background-color: #fce8e0;
     height: 100vh; /* Ensure .login takes up the full viewport height */
     width: 100vw; /* Ensure it spans the full viewport width */
     overflow: hidden; /* Prevent scrollbars */
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    background: linear-gradient(to right,#000000, #3f046c, #9157b3,rgb(215, 149, 254));
 }
 .sellerProducts form {
     width: 45rem;
-    height: 53rem;
+    height: 58rem;
     background-color: white;
     padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border-radius: 18px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    gap:5px;
 
 }
 .form-group {
     display: flex;
-    align-items:flex-start;
-    justify-content: space-between;
-    gap: 10px; /* Space between label and input */
+    flex-direction: column; 
+    width: 100%;
+    gap:8px;
+    
 }
 .form-group label {
     
-    flex: 0 0 30%; /* Set the label to take 30% of the width */
+   
     font-weight:550;
     font-size:1.7rem;
     text-align:start; /* Align label text to the right */
     color:#63039b;
     white-space: nowrap;
+    margin-left: 0;
+    
 }
 
 .form-group input,
 .form-group textarea,
 .form-group select,
 .form-group button {
+    width: 100%;
     flex: 1; /* Make input fields take the remaining space */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 1.5rem;
     box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 .sellerProducts h2 {
     text-align: center;
-    margin-bottom: 20px; /* Add spacing below the heading */
-    font-size: 2.8rem; /* Adjust font size as needed */
+    margin-top:0px;
+    margin-bottom: 5px; /* Add spacing below the heading */
+    font-size: 3.2rem; /* Adjust font size as needed */
     
 }
 .sellerProducts button {
     display: block;
     margin: 20px auto; /* Center the button */
-    padding: 10px 13px;
-    background-color:#63039b;
+    padding: 10px 15px;
+    background: linear-gradient(to right, #3f046c, #9157b3);
     color: white;
     border: none;
     border-radius: 25px;
-    font-size: 1.7rem;
+    font-size: 2rem;
     cursor: pointer;
 }
 
