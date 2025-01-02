@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-mlq!*cjt%%87prm!@@g-z%l&a92_eskaer$meqh=w@0_q$35+x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['empowermart.com','127.0.0.1' ]
+ALLOWED_HOSTS = ['empowermart.com','127.0.0.1']
 
 
 # Application definition
