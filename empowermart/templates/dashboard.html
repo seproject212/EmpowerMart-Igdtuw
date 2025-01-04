@@ -12,14 +12,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/responsive-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive-style.css' %}"> 
     <style>
         .col-md-2 {
             flex: 0 0 20%;  /* 5 cards in the row */
             max-width: 20%; /* Prevent exceeding 20% of the row width */
         }
         .listing_section .card{
-            height:420px;
+            height:450px;
             margin-top: 3rem;
             margin-left:1rem;
             background-color: white; 
@@ -40,11 +40,33 @@
             border-radius: 8px; /* Optional: match the card's border radius */
         }
         .listing_section .card-title{
-            font-size:2.5rem;
+            font-size:2rem;
+        }
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            margin-left: auto;
+        }
+        .edit-button {
+            color: #63039b; /* Set the color of the button */
+            font-size: 2rem; /* Adjust icon size if needed */
+            display: inline-block; /* Ensure the icon aligns properly */
+            text-decoration: none; /* Remove underline */
+            margin-top:auto;
+            margin-bottom: 2px; /* Add margin for spacing */
         }
         
-        
-        
+        .edit-button:hover {
+            color: #420267; /* Optional: Darker shade on hover */
+        }
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Ensures proper alignment of content */
+            height: 100%; /* Ensures consistent height for all cards */
+        }    
     </style>
 </head>
 <body>
@@ -54,6 +76,11 @@
                 <a class="navbar-brand" href="#">
                     <img src="{% static 'images/logo1.png' %}" alt="Logo" class="logo">
                 </a>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item logout">
+                        <a class="nav-link" aria-current="page" href="{% url 'home' %}">Log Out</a>
+                    </li>
+                </ul>
             </nav>
         </div>
     </header>
@@ -82,6 +109,9 @@
                                 <h5 class="card-title">{{ product.Product_name }}</h5>
                                 <p class="card-text">Price: ₹{{ product.Price_per_unit }}</p>
                                 <p class="card-text">Business: {{ product.business_name }}</p>
+                                <a href="edit_product.html" class="edit-button">
+                                    <i class="fas fa-edit"></i>
+                                </a>
                                 
 
                             </div>
