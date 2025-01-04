@@ -78,7 +78,7 @@
                 </a>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item logout">
-                        <a class="nav-link" aria-current="page" href="{% url 'home' %}">Log Out</a>
+                        <a class="nav-link" aria-current="page" href="{% url 'logout' %}">Log Out</a>
                     </li>
                 </ul>
             </nav>
@@ -109,11 +109,9 @@
                                 <h5 class="card-title">{{ product.Product_name }}</h5>
                                 <p class="card-text">Price: ₹{{ product.Price_per_unit }}</p>
                                 <p class="card-text">Business: {{ product.business_name }}</p>
-                                <a href="edit_product.html" class="edit-button">
+                                <a href="{% url 'update_product' product.Product_Id %}" class="edit-button">
                                     <i class="fas fa-edit"></i>
-                                </a>
-                                
-
+                                </a>                                                               
                             </div>
                         </div>
                     </div>

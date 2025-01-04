@@ -153,4 +153,35 @@ from django.shortcuts import redirect
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
+
+def update_product(request, product_id):
+    # Fetch the product using the product_id
+    product = get_object_or_404(Product, Product_Id=product_id)
+
+    if request.method == "POST":
+        # Get data from the form
+        product_name = request.POST.get('product_name', '').strip()
+        price = request.POST.get('price', '').strip()
+        product_description = request.POST.get('product_description', '').strip()
+        product_image = request.FILES.get('product_image')  # Optional field
+
+        # Validate inputs (basic validation)
+        if not product_name or not price or not product_description:
+            messages.error(request, "All fields except image are required!")
+        else:
+            # Update the product fields
+            product.Product_name = product_name
+            product.Price_per_unit = price
+            product.Product_Description = product_description
+            
+            if product_image:
+                product.Product_Image = product_image  # Update image only if a new one is uploaded
+
+            product.save()  # Save changes to the database
+
+            messages.success(request, 'Product updated successfully!')
+            return redirect('dashboard_view')  # Redirect to a product list or detail page
+
+    # Render the edit product form with current product details
+    return render(request, 'edit_product.html', {'product': product})
