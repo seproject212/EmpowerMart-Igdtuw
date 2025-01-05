@@ -155,6 +155,7 @@ def logout_view(request):
     logout(request)
     return redirect('home')
 
+@login_required
 def update_product(request, product_id):
     # Fetch the product using the product_id
     product = get_object_or_404(Product, Product_Id=product_id)
@@ -185,3 +186,16 @@ def update_product(request, product_id):
 
     # Render the edit product form with current product details
     return render(request, 'edit_product.html', {'product': product})
+
+@login_required
+def delete_product(request, product_id):
+    # Match the primary key name in the model
+    product = get_object_or_404(Product, Product_Id=product_id)
+    
+    if product.business_name == request.user:  # Ensure the logged-in user owns the product
+        product.delete()
+        messages.success(request, "Product deleted successfully.")
+    else:
+        messages.error(request, "You are not authorized to delete this product.")
+    
+    return redirect('dashboard_view')
