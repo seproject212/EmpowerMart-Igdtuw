@@ -49,24 +49,34 @@
             padding: 0;
             margin-left: auto;
         }
-        .edit-button {
-            color: #63039b; /* Set the color of the button */
-            font-size: 2rem; /* Adjust icon size if needed */
-            display: inline-block; /* Ensure the icon aligns properly */
-            text-decoration: none; /* Remove underline */
-            margin-top:auto;
-            margin-bottom: 2px; /* Add margin for spacing */
+        .edit-button, .delete-btn {
+            color: #63039b; /* Set icon color */
+            font-size: 1.8rem; /* Same size for both icons */
+            display: inline-block; /* Ensures inline alignment */
+            text-decoration: none; /* Removes underline from links */
+            margin: 0 auto; /* Center horizontally */
+            padding: 5px; /* Add padding for better click area */
         }
         
-        .edit-button:hover {
-            color: #420267; /* Optional: Darker shade on hover */
+        .edit-button:hover, .delete-btn:hover {
+            color: #420267; /* Darker shade on hover for both */
         }
+        
         .card-body {
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Ensures proper alignment of content */
-            height: 100%; /* Ensures consistent height for all cards */
-        }    
+            justify-content: flex-end; /* Align buttons at the bottom */
+            align-items: center; /* Center content horizontally */
+            height: 100%; /* Ensure consistent card height */
+            padding-bottom: 10px; /* Space between buttons and card bottom */
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px; /* Space between edit and delete icons */
+            justify-content: center; /* Center both icons horizontally */
+        }
+        
     </style>
 </head>
 <body>
@@ -109,9 +119,15 @@
                                 <h5 class="card-title">{{ product.Product_name }}</h5>
                                 <p class="card-text">Price: ₹{{ product.Price_per_unit }}</p>
                                 <p class="card-text">Business: {{ product.business_name }}</p>
-                                <a href="{% url 'update_product' product.Product_Id %}" class="edit-button">
-                                    <i class="fas fa-edit"></i>
-                                </a>                                                               
+                                <div class="product-actions">
+                                    <a href="{% url 'update_product' product.Product_Id %}" class="edit-button">
+                                        <i class="fas fa-edit"> Edit</i>
+                                    </a>   
+                                    
+                                    <button type="submit" class="btn delete-btn" onclick="return confirm('Are you sure you want to delete this product?');">
+                                        <i class="fa fa-trash"> Delete</i> 
+                                    </button>
+                                </div>                                                        
                             </div>
                         </div>
                     </div>
