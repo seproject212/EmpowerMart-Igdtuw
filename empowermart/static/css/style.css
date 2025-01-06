@@ -353,6 +353,11 @@ section {
     margin: 0;
     padding: 0;
 }
+.reset_pass body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
 .login .container {
     width: 100%;
@@ -361,6 +366,7 @@ section {
     align-items: center;
     justify-content: center;
 }
+
 
 .login .form-box {
     width: 45rem;
@@ -385,6 +391,7 @@ section {
     margin-top:45px;
    
 }
+
 
 .login .user-form {
     display: flex;
