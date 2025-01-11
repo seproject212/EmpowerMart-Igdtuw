@@ -249,6 +249,79 @@ section {
     z-index:999;
     transition:0.3s all ease-in-out;
 }
+.menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+    margin-right: 15px;
+    z-index: 1100;
+    
+}
+.menu-icon span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    margin: 5px 0;
+    background-color: #e0aaff;
+    transition: background-color 0.3s;
+}
+.menu-icon:hover span {
+    background-color: white;
+}
+
+.side-menu {
+    position: fixed;
+    top: 30px;
+    right: -250px;
+    width: 200px;
+    background-color: #240046;
+    box-shadow: 0 4px 8px rgba(1, 1, 1, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+}
+.side-menu.open {
+    right: 0;
+}
+.menu-toggle:checked + .menu-icon + .side-menu {
+    right: 20px;
+}
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+}
+.side-menu li {
+    margin-bottom: 1rem;
+}
+.side-menu a {
+    text-decoration: none;
+    color: #e0aaff;
+    font-size: 2.1rem;
+    font-weight:600;
+    display: block;
+    padding: 6px;
+    font-family:var(--primary-font);
+}
+.side-menu a:hover {
+    color:#fff;
+    border-radius: 4px;
+}
+.close-menu {
+    font-size: 1.5rem;  /* Same size as menu text */
+    color: #e0aaff;        /* Same color as menu text */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    padding: 10px;       /* Add padding for easier click area */
+}
+
+.close-menu:hover {
+    color:white;     /* Hover color same as menu item hover */
+    background-color: rgba(255, 255, 255, 0.1); /* Add hover effect for consistency */
+    border-radius: 50%;  /* Optional: makes the cross icon round */
+}
 
 .banner_section{
     background:url('../images/banner.png');
