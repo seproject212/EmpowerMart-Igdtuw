@@ -67,3 +67,4 @@ class Product(models.Model):
     
     def __str__(self):
         return self.Product_name
+    
