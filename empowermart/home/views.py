@@ -199,3 +199,38 @@ def delete_product(request, product_id):
         messages.error(request, "You are not authorized to delete this product.")
     
     return redirect('dashboard_view')
+
+from django.contrib.auth import update_session_auth_hash
+from django.urls import reverse
+from django.http import HttpResponseRedirect
+@login_required
+def reset_password(request):
+    if request.method == 'POST':
+        new_password = request.POST.get('new-password')
+        confirm_password = request.POST.get('confirm-password')
+
+        # Check if passwords match
+        if new_password != confirm_password:
+            messages.error(request, "The passwords do not match. Please try again.")
+            return render(request, 'dashboard/reset_password.html')
+
+        # Update the password
+        user = request.user
+        user.set_password(new_password)
+        user.save()
+
+        # Update the session hash (to keep user logged in after password change)
+        update_session_auth_hash(request, user)
+
+        # Log out the user after updating the password
+        logout(request)
+
+        # Show a success message and redirect to the login page
+        messages.success(request, "Your password has been updated successfully. Please log in again.")
+        
+        # Debugging log
+        print("Password reset successful. User logged out. Redirecting to login page.")
+        
+        return redirect('login')  # Make sure the 'login' URL pattern exists
+
+    return render(request, 'dashboard/reset_password.html')
