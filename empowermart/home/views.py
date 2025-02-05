@@ -5,6 +5,13 @@ from django.contrib.auth.hashers import make_password, check_password
 from .models import Product
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
 
 # Create your views here.
 def home(request):
@@ -61,9 +68,18 @@ def register(request):
 
 @login_required
 def dashboard_view(request):
-    # print(f"User's business name: {request.user.business_name}")
-    products = Product.objects.filter(business_name=request.user)
-    return render(request, 'dashboard.html', {'products': products})
+    # Get the current user
+    user = request.user
+    
+    # Generate uidb64 and token for the user
+    uidb64 = urlsafe_base64_encode(str(user.pk).encode())
+    token = default_token_generator.make_token(user)
+    
+    # Get the user's products (existing logic)
+    products = Product.objects.filter(business_name=user)
+    
+    # Pass the generated uidb64 and token to the template context
+    return render(request, 'dashboard.html', {'products': products, 'uidb64': uidb64, 'token': token})
 # def dashboard_view(request):
 #     return render(request, "dashboard.html", {"user": request.user})
 
@@ -92,10 +108,6 @@ from django.shortcuts import render, redirect
 from .models import Product
 
 logger = logging.getLogger(__name__)
-
-from decimal import Decimal, InvalidOperation
-from django.shortcuts import render, redirect
-from .models import Product
 
 from decimal import Decimal, InvalidOperation
 from django.shortcuts import render, redirect
@@ -199,3 +211,39 @@ def delete_product(request, product_id):
         messages.error(request, "You are not authorized to delete this product.")
     
     return redirect('dashboard_view')
+
+
+from django.contrib.auth import update_session_auth_hash
+from django.urls import reverse
+from django.http import HttpResponseRedirect
+@login_required
+def reset_password(request):
+    if request.method == 'POST':
+        new_password = request.POST.get('new-password')
+        confirm_password = request.POST.get('confirm-password')
+
+        # Check if passwords match
+        if new_password != confirm_password:
+            messages.error(request, "The passwords do not match. Please try again.")
+            return render(request, 'dashboard/reset_password.html')
+
+        # Update the password
+        user = request.user
+        user.set_password(new_password)
+        user.save()
+
+        # Update the session hash (to keep user logged in after password change)
+        update_session_auth_hash(request, user)
+
+        # Log out the user after updating the password
+        logout(request)
+
+        # Show a success message and redirect to the login page
+        messages.success(request, "Your password has been updated successfully. Please log in again.")
+        
+        # Debugging log
+        print("Password reset successful. User logged out. Redirecting to login page.")
+        
+        return redirect('login')  # Make sure the 'login' URL pattern exists
+
+    return render(request, 'dashboard/reset_password.html')
