@@ -213,9 +213,11 @@ def delete_product(request, product_id):
     return redirect('dashboard_view')
 
 
-from django.contrib.auth import update_session_auth_hash
-from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.contrib.auth import authenticate, logout
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 @login_required
 def reset_password(request):
     if request.method == 'POST':
@@ -232,18 +234,16 @@ def reset_password(request):
         user.set_password(new_password)
         user.save()
 
-        # Update the session hash (to keep user logged in after password change)
-        update_session_auth_hash(request, user)
-
         # Log out the user after updating the password
         logout(request)
 
-        # Show a success message and redirect to the login page
+        # Flush the session to make sure the user is completely logged out
+        request.session.flush()
+
+        # Show a success message
         messages.success(request, "Your password has been updated successfully. Please log in again.")
-        
-        # Debugging log
-        print("Password reset successful. User logged out. Redirecting to login page.")
-        
+
+        # Redirect to the login page after logging out
         return redirect('login')  # Make sure the 'login' URL pattern exists
 
     return render(request, 'dashboard/reset_password.html')

@@ -12,7 +12,10 @@ urlpatterns = [
     path('dashboard/', views.dashboard_view, name="dashboard"),
     path('logout/', views.logout_view, name='logout'),
     path('product', views.product_list, name='product_list'),
-    path('product/<int:id>/', views.product_detail, name='product'),  # Ensure this matches your pattern
+    path('product/<int:id>/', views.product_detail, name='product'),
+    # newly added
+    # path("", views.home2),
+    # path("signout", views.signout_view),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # if settings.DEBUG:  # Only in development mode
 #     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

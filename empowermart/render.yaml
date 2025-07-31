@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: empowermart
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn empowermart.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: empowermart.settings
+      - key: SECRET_KEY
+        value: 'django-insecure-mlq!*cjt%%87prm!@@g-z%l&a92_eskaer$meqh=w@0_q$35+x'
+      - key: DEBUG
+        value: False
